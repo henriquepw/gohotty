@@ -7,12 +7,16 @@ import (
 	"golang.org/x/net/websocket"
 )
 
-func Server(endpoint string, w http.ResponseWriter, req *http.Request) {
+func New() {
+	// TODO
+}
+
+func Server(w http.ResponseWriter, req *http.Request) {
 	websocket.Handler(func(ws *websocket.Conn) {
 		fmt.Println("🔥 GoHotty enable")
 		defer ws.Close()
 
-		err := websocket.Message.Send(ws, endpoint)
+		err := websocket.Message.Send(ws, req.URL.Path)
 		if err != nil {
 			// TODO
 			fmt.Println(err)
